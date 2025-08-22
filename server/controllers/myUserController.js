@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt');
 const db = require('../db/models');
-const { where } = require('sequelize');
 
 class myUserController {
     async selectUser (req,res) {
