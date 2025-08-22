@@ -1,0 +1,29 @@
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class GameStatistic extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
+  }
+  GameStatistic.init({
+    winGame: DataTypes.INTEGER,
+    loseGame: DataTypes.INTEGER,
+    whenGameEnded: DataTypes.DATE,
+    userId: DataTypes.INTEGER
+  }, {
+    sequelize,
+    modelName: 'GameStatistic',
+  });
+  GameStatistic.associate = function(models) {
+  GameStatistic.belongsTo(models.User, { foreignKey: 'userId' });
+};
+  return GameStatistic;
+};
