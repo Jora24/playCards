@@ -16,14 +16,13 @@ module.exports = (sequelize, DataTypes) => {
   GameStatistic.init({
     winGame: DataTypes.INTEGER,
     loseGame: DataTypes.INTEGER,
-    whenGameEnded: DataTypes.DATE,
     userId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'GameStatistic',
   });
   GameStatistic.associate = function(models) {
-  GameStatistic.belongsTo(models.User, { foreignKey: 'userId' });
-};
+    GameStatistic.belongsTo(models.User, { foreignKey: 'userId' });
+  };
   return GameStatistic;
 };

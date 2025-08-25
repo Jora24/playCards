@@ -15,11 +15,12 @@ module.exports = {
       loseGame: {
         type: Sequelize.INTEGER
       },
-      whenGameEnded: {
-        type: Sequelize.DATE
-      },
       userId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+        model:'user',
+        key: 'id'
+      },
       },
       createdAt: {
         allowNull: false,

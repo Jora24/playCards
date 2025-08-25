@@ -6,13 +6,17 @@ class myUserController {
         try{
             const { userName, phoneNumber, password } = req.body;
             const checkUser = await db.User.findOne({ where: { phoneNumber } });
+            const checkWinRate = await db.GameStatistic.findOne({ where: { userId: checkUser.id } });
+            const gamePlayed = checkWinRate.dataValues.winGame + checkWinRate.dataValues.loseGame;
+            const winRate = checkWinRate.dataValues.winGame / gamePlayed * 100;
             if (checkUser !== null){
                 const checkPass = await bcrypt.compare( password , checkUser.dataValues.password );
                 if ( userName == checkUser.dataValues.userName && phoneNumber == checkUser.dataValues.phoneNumber && checkPass == true ){
                     const selectUser = await db.User.findOne({ where: { phoneNumber } });
                     const user = {
                         name: selectUser.dataValues.userName,
-                        phone: selectUser.dataValues.phoneNumber 
+                        phone: selectUser.dataValues.phoneNumber,
+                        winRate: `${winRate}%`
                     }
                     res.status(200).send(user);
                 } else {
