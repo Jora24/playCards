@@ -1,40 +1,29 @@
-const foolCalod = {
-  ace: {
-    size: 14,
-    suit: ["Hearts", "Diamonds", "Clubs", "Spades"]
-  },
-  king: {
-    size: 13,
-    suit: ["Hearts", "Diamonds", "Clubs", "Spades"]
-  },
-  queen: {
-    size: 12,
-    suit: ["Hearts", "Diamonds", "Clubs", "Spades"]
-  },
-  jack: {
-    size: 11,
-    suit: ["Hearts", "Diamonds", "Clubs", "Spades"]
-  },
-  ten: {
-    size: 10,
-    suit: ["Hearts", "Diamonds", "Clubs", "Spades"]
-  },
-  nine: {
-    size: 9,
-    suit: ["Hearts", "Diamonds", "Clubs", "Spades"]
-  },
-  eight: {
-    size: 8,
-    suit: ["Hearts", "Diamonds", "Clubs", "Spades"]
-  },
-  seven: {
-    size: 7,
-    suit: ["Hearts", "Diamonds", "Clubs", "Spades"]
-  },
-  six: {
-    size: 6,
-    suit: ["Hearts", "Diamonds", "Clubs", "Spades"]
-  }
-};
+const foolCalod = [
+  { name: "ace", size: 14 },
+  { name: "king", size: 13 },
+  { name: "queen", size: 12 },
+  { name: "jack", size: 11 },
+  { name: "ten", size: 10 },
+  { name: "nine", size: 9 },
+  { name: "eight", size: 8 },
+  { name: "seven", size: 7 },
+  { name: "six", size: 6 }
+];
 
-module.exports = foolCalod;
+const suits = ["Hearts", "Diamonds", "Clubs", "Spades"];
+
+function createDeck() {
+  const deck = [];
+  for (const card of foolCalod) {
+    for (const suit of suits) {
+      deck.push({
+        name: card.name,
+        size: card.size,
+        suit
+      });
+    }
+  }
+  return deck;
+}
+
+module.exports = { foolCalod, suits, createDeck };
